@@ -19,7 +19,7 @@ An API backend to ingest transactions data and flags suspicious ones.
 
 - PHP 8.2+
 - Composer
-- MySQL 8.0+ / PostgreSQL 12+ / SQLite 3
+- MySQL 8.0+ / SQLite 3
 
 ## Installation
 
@@ -39,9 +39,10 @@ composer install
 cp .env.example .env
 ```
 
-### Database
+## Database
+- Update the `.env` file with your database credentials
 
-- Update the `.env` file with your database credentials or leave as-is for SQLite
+### For MySQL
 ```bash
 DB_CONNECTION=mysql
 DB_HOST=mysql
@@ -49,6 +50,21 @@ DB_PORT=3306
 DB_DATABASE=vigilant
 DB_USERNAME=root
 DB_PASSWORD=password
+```
+
+### For SQLite
+```bash
+DB_CONNECTION=sqlite
+```
+
+```bash
+touch database/database.sqlite
+```
+
+### Run Migration
+
+```bash
+php artisan migrate
 ```
 
 ### Configurable Parameters
@@ -62,8 +78,10 @@ TXN_THROTTLE_MINS=1
 
 ```bash
 php artisan key:generate
+```
+
+```bash
 php artisan jwt:secret
-php artisan migrate
 ```
 
 <!-- ```bash
@@ -77,6 +95,6 @@ php artisan serve
 ```
 
 ## Postman Links
-- Collection & Environment URL: 
+- Collection & Environment URL: https://drive.google.com/drive/folders/1toH3Dcsj1C9TLKfTvvu9S2bZtf-ENLvZ
 
 
